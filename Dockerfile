@@ -1,8 +1,6 @@
 # Pull from centos/systemd
 FROM centos/systemd
 
-LABEL maintainer="iso-se@list.arizona.edu"
-
 # Install packages needed for lab across all containers
 RUN yum install python3 openssh-server openssh-clients sshpass initscripts -y sudo; \
   systemctl enable sshd.service; \
@@ -19,12 +17,13 @@ RUN adduser centos; \
 
 RUN yum remove iptables -y
 
-RUN yum install telnet-server -y
+RUN yum install telnet-server tftp-server -y
 
-# Add user account
+# Add user accounts
 RUN adduser secret
+RUN adduser backdoor
 
-# expost 22 for SSH access
-EXPOSE 22 80
+# expost ports
+EXPOSE 22 80 443
 
 CMD ["/usr/sbin/init"]
