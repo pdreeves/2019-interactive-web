@@ -19,6 +19,8 @@ RUN adduser centos; \
 
 RUN yum remove iptables -y
 
+RUN yum install telnet-server -y
+
 # Add user account
 RUN adduser secret
 
