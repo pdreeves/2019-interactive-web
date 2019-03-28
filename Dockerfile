@@ -12,7 +12,7 @@ RUN yum install python3 openssh-server openssh-clients sshpass initscripts -y su
 # Configure SSH settings
 RUN sed -i 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config; \
   adduser centos; \
-  echo "centos" | passwd --stdin centos; \
+  echo "interactive" | passwd --stdin centos; \
   echo 'centos ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # expost 22 for SSH access
